@@ -1,6 +1,10 @@
+{{ Production }}
+
 If you get to the end of step 1, the refactoring is possible - it will produce a valid result.
 
 This recipe is designed to do Extract Function and nothing else. If you want something else, there are other refactorings for that.
+
+You can commit at the end of any numbered step. At each such point, the code will compile and produce exactly the same results as the original code.
 
 # Constraints
 
