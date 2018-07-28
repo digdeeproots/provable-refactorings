@@ -1,4 +1,4 @@
-{{ Draft }}
+{{< Draft >}}
 
 # Constraints
 
