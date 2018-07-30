@@ -10,7 +10,7 @@ In fact, we do not rely on tests in any way, even if they are present. This is b
 
 Each recipe is guaranteed to be bug-for-bug compatible. This means that the code before and after the transformation is guaranteed to have exactly the same behavior, including unintented behavior. More plainly:
 
-> Never accidentally introduce nor fix a bug, including one that you don't know exists. maintain all behavior, including unknown or unspecified behavior.
+> Never accidentally introduce nor fix a bug, including one that you don't know exists. Maintain all behavior, including unknown or unspecified behavior.
 
 This property allows these refactorings to be used in a wide variety of contexts in which other refactorings are insufficiently safe. That shifts the economics of software design, and allows design improvement of otherwise intractible code bases.
 
