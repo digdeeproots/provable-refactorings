@@ -1,6 +1,8 @@
 {{< Draft >}}
 
-This recipe is designed to do Extract Class and nothing else. If you want to do something else, consult the other refactorings.
+# Split Class
+
+This recipe is designed Extract one responsibility from one class and nothing else. If you want to do something else, consult the other refactorings.
 
 # Constraints
 

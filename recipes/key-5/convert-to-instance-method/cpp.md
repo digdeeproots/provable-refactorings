@@ -1,5 +1,7 @@
 {{< Draft >}}
 
+# Convert to Instance Method
+
 # Constraints
 
 The method has a parameter that refers to the object that the method will become an instance of. Example:
