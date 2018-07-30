@@ -1,3 +1,5 @@
+{{< Staging >}}
+
 # Add empty else
 
 It is always valid to add an empty "else". May be needed before doing the [Move statement into all branches of "if-else"](move-statement-into-all-branches-of-if-else) refactoring. Can be used to undo [Remove empty "else"](remove-empty-else).
