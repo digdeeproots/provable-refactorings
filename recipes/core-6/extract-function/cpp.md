@@ -63,9 +63,9 @@ For example,
 }();
 ```
 
-becomes (new code in green ) (HINT: You can copy and paste the text in green below to avoid typos.):
- 
-```cpp
+becomes:
+
+```cpp hl_lines="1, 3"
 auto Applesauce = [&]() {
     // ...
 };  Applesauce();
