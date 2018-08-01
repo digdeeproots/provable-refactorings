@@ -55,15 +55,15 @@ If it's not obvious that all code paths return, then back up and either [Elimina
 
 1. Assign the lambda to Applesauce and call it. 
 
+For example,
+
 ``` cpp
-e.g:
 [&]() { 
     // ...
 }();
 ```
 
-becomes (new code in green ) 
-(HINT: You can copy and paste the text in green below to avoid typos.)
+becomes (new code in green ) (HINT: You can copy and paste the text in green below to avoid typos.):
  
 ``` cpp
 auto Applesauce = [&]() {
@@ -94,7 +94,7 @@ For each error about a variable that must be captured:
 2. Paste it in to the capture list, prefixed with `&`, 
 3. Repeat until green.
 
-For example:
+For example,
 
 ``` cpp
 auto Applesauce = [this, &foo]() -> bool {
@@ -112,7 +112,7 @@ The order of the capture list will influence the order of the parameters of the 
 4. Compile. 
 5. If you get an error because the variable is modified, make it non-const
 
-For example:
+For example,
 
 ``` cpp
 Column* pCol = ...
@@ -125,7 +125,7 @@ auto Applesauce = [this, &pCol, &s]() -> void
 Applesauce();
 ```
 
-Becomes:
+becomes:
 
 ``` cpp
 Column* pCol = ...
@@ -147,7 +147,7 @@ For each argument:
 3. Paste in to the lambda parameter list
 4. Compile
 
-For example:
+For example,
 
 ``` cpp
 Column* pCol = ...
@@ -160,7 +160,7 @@ auto Applesauce = [](const auto &pCol, const auto &s) -> void
 Applesauce(pCol, s);
 ```
 
-Becomes
+becomes:
 
 ``` cpp
 Column* pCol = ...
@@ -194,7 +194,7 @@ To avoid ambiguity, always place the const keyword to the right of what you want
 2. Compile
 3. If the compile fails, undo
 
-For example:
+For example,
 
 ``` cpp
 auto Applesauce = [this]() -> void {
@@ -202,7 +202,7 @@ auto Applesauce = [this]() -> void {
 };
 ```
 
-Becomes:
+becomes:
 
 ``` cpp
 auto Applesauce = []() -> void {
@@ -225,7 +225,7 @@ auto Applesauce = []() -> void {
 6. Paste the signature in to the class declaration in a private section.
 7. Compile and remove `const` if necessary.
 
-For example:
+For example,
 
 ``` cpp
 auto SomeClass::Applesauce () const -> void {
@@ -241,7 +241,7 @@ auto SomeClass::Applesauce () const -> void {
 4. Compile and resolve any errors:
 5. If the free function uses typedefs/aliases or classes nested in the original class, convert the free function to a private static function of the original class.
 
-For example:
+For example,
 
 ``` cpp
 namespace {
@@ -258,7 +258,7 @@ auto Applesauce () -> void {
 3. Select the word auto and paste the return value over it.
 4. Remove the trailing semicolon.
 
-For example:
+For example,
 
 ``` cpp
 namespace {
@@ -268,7 +268,7 @@ auto Applesauce () -> void {
 }
 ```
 
-Becomes:
+becomes:
 
 ``` cpp
 namespace {
