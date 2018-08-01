@@ -6,13 +6,13 @@ Too many braces make code harder to read
 
 For example:
 
-``` cpp
+```cpp
 const AxisHeaderIndices& xIndices(model.GetXAxis()->GetHeaderIndices(paneDesc.GetXFields(), paneDesc.GetXIndex()));
 ```
 
 Becomes:
 
-``` cpp
+```cpp
 const AxisHeaderIndices& xIndices = model.GetXAxis()->GetHeaderIndices(paneDesc.GetXFields(), paneDesc.GetXIndex());
 ```
 

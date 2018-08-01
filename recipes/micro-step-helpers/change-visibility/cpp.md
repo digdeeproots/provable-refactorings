@@ -4,7 +4,7 @@
 
 You have a member that you would like to change the visibility of:
 
-``` cpp
+```cpp
 class Foo {
     Foo(const Foo&) = delete;
 public:
@@ -14,7 +14,7 @@ public:
 
 Becomes:
 
-``` cpp
+```cpp
 class Foo {
 public:
     Foo();

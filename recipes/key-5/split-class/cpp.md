@@ -19,7 +19,7 @@ We want to extract class `OneResponsibility` from class `Original`. We want to m
 
 Original.h:
 
-``` cpp
+```cpp
 class Original
 {
 public:
@@ -34,7 +34,7 @@ private:
 
 Original.cpp:
 
-``` cpp
+```cpp
 void Original::StayingMethod()
 {
     MovingMethod();
@@ -52,7 +52,7 @@ Above the `Original` declaration, add a minimal declaration of the new `OneRespo
 
 In Original.h:
 
-``` cpp
+```cpp
 class OneResponsibility
 {
     friend class Original;
@@ -90,7 +90,7 @@ Do a search for the field name. Check each reference and ensure than none of the
 
 In Original.h:
 
-``` cpp
+```cpp
 class OneResponsibility
 {
 // ...
@@ -107,7 +107,7 @@ Compile single file will find all the references you have to update.
 
 In Original.cpp:
 
-``` cpp
+```cpp
 void Original::MovingMethod()
 {
     m_helper.m_movingField = 42;
@@ -130,7 +130,7 @@ For each method you want to move, starting with the leaf methods (i.e. the ones 
 
 In Original.h:
 
-``` cpp
+```cpp
 class OneResponsibility
 {
 public:
@@ -154,7 +154,7 @@ Do not physically move the method definition in the file yet. This will make cod
 
 In Original.cpp:
 
-``` cpp
+```cpp
 void Original::StayingMethod()
 {
     m_helper.MovingMethod();

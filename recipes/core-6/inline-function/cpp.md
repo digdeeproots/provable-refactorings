@@ -30,14 +30,14 @@ You can't inline if it's polymorphic.
 
 For example:
 
-``` cpp
+```cpp
 auto Foo() -> void { blah(); };
 Foo();
 ```
 
 Becomes:
 
-``` cpp
+```cpp
 blah();
 ```
 

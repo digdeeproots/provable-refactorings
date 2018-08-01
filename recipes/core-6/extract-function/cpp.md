@@ -18,7 +18,7 @@ This recipe only works on rvalue expressions or on whole blocks (surrounded by b
 
 For a block/for/while/if, surround with:
  
-``` cpp
+```cpp
 [&]() {
 
 }();
@@ -26,7 +26,7 @@ For a block/for/while/if, surround with:
 
 For an expression, surround it with:
 
-``` cpp
+```cpp
 [&]() { return
 
 ;}()
@@ -41,7 +41,7 @@ Search the new lambda for any return statements (using find). If there are any r
 
 If it's obvious that all code paths return, then add a `return` before the lambda:
 
-``` cpp
+```cpp
 return [&]() { 
 
     // …  
@@ -57,7 +57,7 @@ If it's not obvious that all code paths return, then back up and either [Elimina
 
 For example,
 
-``` cpp
+```cpp
 [&]() { 
     // ...
 }();
@@ -65,7 +65,7 @@ For example,
 
 becomes (new code in green ) (HINT: You can copy and paste the text in green below to avoid typos.):
  
-``` cpp
+```cpp
 auto Applesauce = [&]() {
     // ...
 };  Applesauce();
@@ -77,7 +77,7 @@ Compile to make sure you didn't typo.
 
 Set the return type on the lambda, even if it's `void`. In Visual Studio, the tooltip over `auto` will tell you the type.
 
-``` cpp
+```cpp
 auto Applesauce = [&]() -> SOMETYPE {
     // ...
 };
@@ -96,7 +96,7 @@ For each error about a variable that must be captured:
 
 For example,
 
-``` cpp
+```cpp
 auto Applesauce = [this, &foo]() -> bool {
     cout << foo;
 };
@@ -114,7 +114,7 @@ The order of the capture list will influence the order of the parameters of the 
 
 For example,
 
-``` cpp
+```cpp
 Column* pCol = ...
 string s = ...
  
@@ -127,7 +127,7 @@ Applesauce();
 
 becomes:
 
-``` cpp
+```cpp
 Column* pCol = ...
 string s = ...
 
@@ -149,7 +149,7 @@ For each argument:
 
 For example,
 
-``` cpp
+```cpp
 Column* pCol = ...
 String s = ...
 
@@ -162,7 +162,7 @@ Applesauce(pCol, s);
 
 becomes:
 
-``` cpp
+```cpp
 Column* pCol = ...
 String s = ...
 
@@ -178,7 +178,7 @@ About pointer parameters and the const keyword
 
 When the parameter is a pointer type, it's important to understand how the placement of the const keyword affects the parameter type. In the example above, the original type is "Pointer to Column", so the pointer is what must be const (so we know it's not reseated to point to another object). It's also important to specify that the Column itself is const to avoid losing the implicit constness in the original code as we make the data flow explicit.
 
-``` cpp
+```cpp
 const Column* // WRONG - this is a non-const pointer to const column
 Column const* // WRONG - same as above
 Column* const // BETTER - this is a const pointer to non-const column
@@ -196,7 +196,7 @@ To avoid ambiguity, always place the const keyword to the right of what you want
 
 For example,
 
-``` cpp
+```cpp
 auto Applesauce = [this]() -> void {
     ...
 };
@@ -204,7 +204,7 @@ auto Applesauce = [this]() -> void {
 
 becomes:
 
-``` cpp
+```cpp
 auto Applesauce = []() -> void {
     ...
 };
@@ -227,7 +227,7 @@ auto Applesauce = []() -> void {
 
 For example,
 
-``` cpp
+```cpp
 auto SomeClass::Applesauce () const -> void {
     ...
 };
@@ -243,7 +243,7 @@ auto SomeClass::Applesauce () const -> void {
 
 For example,
 
-``` cpp
+```cpp
 namespace {
 auto Applesauce () -> void {
     ...
@@ -260,7 +260,7 @@ auto Applesauce () -> void {
 
 For example,
 
-``` cpp
+```cpp
 namespace {
 auto Applesauce () -> void {
     ...
@@ -270,7 +270,7 @@ auto Applesauce () -> void {
 
 becomes:
 
-``` cpp
+```cpp
 namespace {
 void Applesauce () {
     ...

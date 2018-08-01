@@ -13,7 +13,7 @@
 
 For example,
 
-``` cpp
+```cpp
 class Foo {
     void Bar() const;
     int m_width;
@@ -30,7 +30,7 @@ pFoo->Bar();
 
 Becomes:
 
-``` cpp
+```cpp
 class Foo {
     void Bar(int width) const;
     int m_width;
@@ -54,7 +54,7 @@ This is hard. VisualAssist sometimes gets it wrong.
 
 Should this be multiple steps? How can we do this incrementally, in case there are lots of callers? Probably need to add a set-up step where we create a delegating thunk for a while, which we will clean up later.
 
-``` cpp
+```cpp
 class Foo {
     static void Bar(int width);
     int m_width;
@@ -73,7 +73,7 @@ Foo::Bar(m_width);
 
 Provided that the static function does not use any private features of the original class, change it to a free function.  Move the declaration from the class to just after the class, remove static.  At the definition remove the scope.  Remove the scope resolution operators at each call site.
 
-``` cpp
+```cpp
 class Foo {
 };
 void Bar(int width);

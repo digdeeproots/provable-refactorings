@@ -13,7 +13,7 @@
 
 ## 1. Create a new, empty class named `Applesauce`:
 
-``` cpp
+```cpp
 class Applesauce {
 };
 ```
@@ -22,7 +22,7 @@ class Applesauce {
 
 1. Overload the method under refactor with a new method. The new one has same signature and directly calls the method under refactor. This will be the wrapper method, which will enable existing callers keep working unchanged while you refactor. It will be inlined later in the recipe.
 
-``` cpp
+```cpp
 // Method under refactor
 bool drawCircle(const int x, const int y, const int radius)
 {
@@ -38,7 +38,7 @@ bool drawCircle(const int x, const int y, const int radius)
 
 2. In your wrapper method, right before the call, create a new instance of your empty class and store it in a variable.
 
-``` cpp
+```cpp
 // Wrapper method
 bool drawCircle(const int x, const int y, const int radius)
 {
@@ -49,7 +49,7 @@ bool drawCircle(const int x, const int y, const int radius)
 
 3. Add new parameter of type `Applesauce` to the method under refactor, and pass in the variable.
 
-``` cpp
+```cpp
 // Method under refactor
 bool drawCircle(const Applesauce& a, const int x, const int y, const int radius)
 {
@@ -70,7 +70,7 @@ bool drawCircle(const int x, const int y, const int radius)
 
 Do not use "= default" instead of the empty braces {}, because you will be adding parameters to this constructor in the next step.
 
-``` cpp
+```cpp
 class Applesauce {
 public:
   Applesauce()
@@ -84,7 +84,7 @@ For each parameter:
 
 1. Add the parameter received into the wrapper to the end of the constructor call for the new class.
 
-``` cpp
+```cpp
 // Wrapper method
 bool drawCircle(const int x, const int y, const int radius)
 {
@@ -95,7 +95,7 @@ bool drawCircle(const int x, const int y, const int radius)
 
 2. Add the argument to the constructor. Copy and paste the type signature from the wrapper method.
 
-``` cpp
+```cpp
 class Applesauce {
 public:
   Applesauce(const int x)
@@ -105,7 +105,7 @@ public:
 
 3. Add a public field to the class. Paste the same type signature again. Remove any `const` or `volatile` (not sure what you should do if you have volatile params). Prepend `m_` to the variable name if that is in your style guide.
 
-``` cpp
+```cpp
 class Applesauce {
 public:
   Applesauce(const int x)
@@ -117,7 +117,7 @@ public:
 
 4. Initialize the field from the constructor arg.
 
-``` cpp
+```cpp
 class Applesauce {
 public:
   Applesauce(const int x)
@@ -136,7 +136,7 @@ For each argument:
 
 1. Find every read or write for the param and replace it with a read or write for the same-named field on the new object. You can use the compiler to find them by commenting out the parameter declaration, but not any variable declaration in the function that shadows the parameter.
 
-``` cpp
+```cpp
 // Method under refactor
 bool drawCircle(const Applesauce& a, const int x, const int y, const int radius)
 {
@@ -152,7 +152,7 @@ bool drawCircle(const Applesauce& a, const int x, const int y, const int radius)
 1. Remove unused parameter from method declaration.
 2. Remove unused parameter from the method call in your wrapper method.
 
-``` cpp
+```cpp
 // Wrapper method
 bool drawCircle(const int x, const int y, const int radius)
 {
@@ -179,7 +179,7 @@ bool drawCircle(const int x, const int y, const int radius)
 
 Given:
 
-``` cpp
+```cpp
 A F(B b, const C& c, D& d)
 {
     cout << b;
@@ -191,7 +191,7 @@ F(b, c, d);
 
 1. At the function declaration, copy the parameter list and paste it in to a new struct. replace commas with semicolons and add another semicolon at the end of the list.
 
-``` cpp
+```cpp
 struct F_Params
 {
     B b;
@@ -202,13 +202,13 @@ struct F_Params
 
 2. Change the function signature to take the params object, by value
 
-``` cpp
+```cpp
 F(F_Params params)
 ```
 
 3. and fix up all uses of parameters to use this object:
 
-``` cpp
+```cpp
 {
     cout << params.b;
 }
@@ -216,7 +216,7 @@ F(F_Params params)
 
 4. Add braces at the call sites:
 
-``` cpp
+```cpp
 F({b, c, d});
 ```
 

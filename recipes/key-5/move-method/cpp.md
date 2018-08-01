@@ -31,7 +31,7 @@ Insert a closing brace before the function, to close the anonymous namespace, an
 
 For example,
 
-``` cpp
+```cpp
 }  // <------ closes anonymous namespace
 
 MyFunction()

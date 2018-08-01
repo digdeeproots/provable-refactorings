@@ -14,7 +14,7 @@ a. If the function is in an anonymous namespace, remove it from the anonymous na
 
 b. Copy + paste the function signature into the public section of the class definition in the class's header file.
 
-``` cpp
+```cpp
 class Cls
 {
 public:
@@ -24,7 +24,7 @@ public:
 
 c. Insert the keyword static in front of the signature you pasted, and put a semicolon at the end.
 
-``` cpp
+```cpp
 class Cls
 {
 public:
@@ -34,7 +34,7 @@ public:
 
 d. In the .cpp implementation file, add the class's name plus the scope resolution operator "::" to the front of the function's name.
 
-``` cpp
+```cpp
 void Cls::F(const Cls& cls)
 {
   cls.blah();

@@ -6,7 +6,7 @@
 
 The method has a parameter that refers to the object that the method will become an instance of. Example:
 
-``` cpp
+```cpp
 // Const parameter
 void F(const Cls& cls)
 {
@@ -43,7 +43,7 @@ Apply the [Convert Free Function to Static Method (fix link)](#) refactoring to:
 
 ### a. In the header file, convert the static to an inline delegate to a new instance method.
 
-``` cpp
+```cpp
 class Cls
 {
 public:
@@ -53,7 +53,7 @@ public:
 
 becomes
 
-``` cpp
+```cpp
 class Cls
 {
 public:
@@ -66,7 +66,7 @@ Do this with copy and paste, not by re-typing.
 
 ### b. If the class instance parameter is const, put a const at the end of the instance method's signature in BOTH the header and implementation files:
 
-``` cpp
+```cpp
 // Header file
 class Cls
 {
@@ -101,7 +101,7 @@ If you updated all callers, then remove the static inline function.
 
 ### a. In the function body, replace references to the class instance with (*this).
 
-``` cpp
+```cpp
 void Cls::F(const Cls& cls)
 {
   (*this).blah(); // <-- replace 'cls' with (*this)

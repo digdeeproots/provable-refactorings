@@ -32,6 +32,6 @@ If it failed, it's either because the value was mutated locally, or it is passed
 
 If the other does use the varaible in a const-correct way and you want to break the chain to get this refactoring in, then perform a `const_cast<>()`, commit, then remove the cast and continue. It can be handy to create a macro for this purpose:
 
-``` cpp
+```cpp
 #define CAST_AWAY_CONST_BECAUSE_FUNCTION_USES_AS_CONST_BUT_DOESNT_SAY_SO(type, value) const_cast< type >(value)
 ```

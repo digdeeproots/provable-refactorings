@@ -22,7 +22,7 @@ It's possible that the rename introduced a change in a subtle way, making step 3
 
 For example:
 
-``` cpp
+```cpp
 void B();
   
 namespace
