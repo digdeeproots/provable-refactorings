@@ -65,7 +65,7 @@ For example,
 
 becomes:
 
-```cpp hl_lines="1, 3"
+```cpp hl_lines="1 3"
 auto Applesauce = [&]() {
     // ...
 };  Applesauce();
