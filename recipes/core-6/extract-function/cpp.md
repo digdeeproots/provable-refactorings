@@ -20,7 +20,7 @@ For a block/for/while/if, surround with:
  
 ```cpp
 [&]() {
-
+    // ...
 }();
 ```
 
@@ -28,7 +28,7 @@ For an expression, surround it with:
 
 ```cpp
 [&]() { return
-
+    // ...
 ;}()
 ```
 
@@ -43,9 +43,7 @@ If it's obvious that all code paths return, then add a `return` before the lambd
 
 ```cpp
 return [&]() { 
-
-    // …  
-
+    //...
 }();
 ```
 
@@ -53,7 +51,7 @@ If it's not obvious that all code paths return, then back up and either [Elimina
 
 ## 2. Extract Variable
 
-1. Assign the lambda to Applesauce and call it. 
+1. Assign the lambda to `Applesauce` and call it.  ([Extract Variable](/recipes/core-6/extract-variable/cpp.md))
 
 For example,
 
@@ -75,7 +73,7 @@ Compile to make sure you didn't typo.
 
 ## 3. Set the return type
 
-Set the return type on the lambda, even if it's `void`. In Visual Studio, the tooltip over `auto` will tell you the type.
+Set the return type on the lambda, even if it's `void`. In Visual Studio, the IntelliSense tooltip over `auto` will tell you the type.
 
 ```cpp
 auto Applesauce = [&]() -> SOMETYPE {
@@ -91,7 +89,7 @@ Replace `[&]` with `[this]` (or `[]` in a free function) and compile.
 
 For each error about a variable that must be captured:
 1. Copy the variable name
-2. Paste it in to the capture list, prefixed with `&`, 
+2. Paste it in to the capture list, prefixed with `&`. 
 3. Repeat until green.
 
 For example,
@@ -107,20 +105,17 @@ The order of the capture list will influence the order of the parameters of the 
 ## 5. Convert captures to parameters
 
 1. Select the capture list (but not 'this') and Cut
-2. Paste it in to the argument list.
-3. Paste in to the parameter list and inject `const auto` in front of each parameter
+2. Paste into the argument list, removing `&`s.
+3. Paste into the parameter list and inject `const auto` in front of each parameter
 4. Compile. 
 5. If you get an error because the variable is modified, make it non-const
 
 For example,
 
 ```cpp
-Column* pCol = ...
-string s = ...
- 
-auto Applesauce = [this, &pCol, &s]() -> void
+auto Applesauce = [this, &i, &s]() -> void
 {
-	cout << pCol->name() << s;
+	cout << ++i << s;
 };
 Applesauce();
 ```
@@ -128,14 +123,11 @@ Applesauce();
 becomes:
 
 ```cpp
-Column* pCol = ...
-string s = ...
-
-auto Applesauce = [this](const auto &pCol, const auto &s) -> void
+auto Applesauce = [this](auto &i, const auto &s) -> void
 {
-	cout << pCol->name() << s;
+	cout << ++i << s;
 };
-Applesauce(pCol, s);
+Applesauce(i, s);
 ```
 
 ## 6. Explicitly specify parameter types 
@@ -144,39 +136,43 @@ For each argument:
 
 1. Go-to-definiton on the argument
 2. Copy the variable type
-3. Paste in to the lambda parameter list
+3. Paste into the lambda parameter list
 4. Compile
 
 For example,
 
 ```cpp
-Column* pCol = ...
-String s = ...
+int i = ...
+std::string s = ...
 
-auto Applesauce = [](const auto &pCol, const auto &s) -> void
+auto Applesauce = [this](auto &i, const auto &s) -> void
 {
-	cout << pCol->name() << s;
+    std::cout << ++i << s;
 };
-Applesauce(pCol, s);
+Applesauce(i, s);
 ```
 
 becomes:
 
 ```cpp
-Column* pCol = ...
-String s = ...
+int i = ...
+std::string s = ...
 
-auto Applesauce = [](Column const *pCol, String const& s) -> void
+auto Applesauce = [this](int &i, const std::string &s) -> void
 {
-	cout << pCol->name() << s;
+    std::cout << ++i << s;
 };
-Applesauce(pCol);
+Applesauce(i, s);
 ```
 
-{{% Note %}}
-About pointer parameters and the const keyword
+### About pointer parameters and the `const` keyword
 
-When the parameter is a pointer type, it's important to understand how the placement of the const keyword affects the parameter type. In the example above, the original type is "Pointer to Column", so the pointer is what must be const (so we know it's not reseated to point to another object). It's also important to specify that the Column itself is const to avoid losing the implicit constness in the original code as we make the data flow explicit.
+When the parameter is a pointer type, it's important to understand how the placement of the const keyword affects the parameter
+type. 
+
+For example, given a local variable in `Column* pCol = ...`, the original type is "Pointer to `Column`", so the pointer is what
+must be const (so we know it's not reseated to point to another object). It's also important to specify that the `Column` itself is 
+const to avoid losing the implicit constness in the original code as we make the data flow explicit.
 
 ```cpp
 const Column* // WRONG - this is a non-const pointer to const column
@@ -186,7 +182,6 @@ Column const * const // BEST - this is a const pointer to const column
 ```
 
 To avoid ambiguity, always place the const keyword to the right of what you want to make const.
-{{% /Note %}}
 
 ## 7. Try to eliminate `this` capture
 
@@ -198,7 +193,7 @@ For example,
 
 ```cpp
 auto Applesauce = [this]() -> void {
-    ...
+    // ...
 };
 ```
 
@@ -206,7 +201,7 @@ becomes:
 
 ```cpp
 auto Applesauce = []() -> void {
-    ...
+    // ...
 };
 ```
 
@@ -215,7 +210,7 @@ auto Applesauce = []() -> void {
 * If `this` is captured, use 8A.
 * If `this` is not captured, use 8B.
 
-### 8A. Convert this-bound lambda to member function
+### 8A. Convert `this`-bound lambda to member function
 
 1. Cut the lambda statement and paste it outside the current function.
 2. Remove `= [this]`.
@@ -228,12 +223,18 @@ auto Applesauce = []() -> void {
 For example,
 
 ```cpp
+class SomeClass
+{
+private:
+    auto Applesauce () const -> void;
+}
+
 auto SomeClass::Applesauce () const -> void {
-    ...
+    // ...
 };
 ```
 
-### 8B. Convert non-this Lambda to free function
+### 8B. Convert non-`this` Lambda to free function
 
 1. Cut the lambda statement and paste it above the current function.
 2. Remove `= []`
@@ -251,29 +252,3 @@ auto Applesauce () -> void {
 }
 ```
 
-### 9. Convert return value from lambda-like syntax to traditional syntax
-
-1. Select the return value (after the ->) and cut it.
-2. Delete the ->
-3. Select the word auto and paste the return value over it.
-4. Remove the trailing semicolon.
-
-For example,
-
-```cpp
-namespace {
-auto Applesauce () -> void {
-    ...
-};
-}
-```
-
-becomes:
-
-```cpp
-namespace {
-void Applesauce () {
-    ...
-}
-}
-```
