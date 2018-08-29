@@ -6,17 +6,17 @@ Each recipe includes its methods of proof within each step of the recipe. The mo
 
 In fact, we do not rely on tests in any way, even if they are present. This is because we are holding ourselves to a higher standard of correctness than testing can validate.
 
-## Standard of Correctness: Bug-for-Bug Compatability
+## Standard of Correctness: Bug-for-Bug Compatibility
 
 Each recipe is guaranteed to be bug-for-bug compatible. This means that the code before and after the transformation is guaranteed to have exactly the same behavior, including unintended behavior. More plainly:
 
 > Never accidentally introduce nor fix a bug, including one that you don't know exists. Maintain all behavior, including unknown or unspecified behavior.
 
-This property allows these refactorings to be used in a wide variety of contexts in which other refactorings are insufficiently safe. That shifts the economics of software design, and allows design improvement of otherwise intractible code bases.
+This property allows these refactorings to be used in a wide variety of contexts in which other refactorings are insufficiently safe. That shifts the economics of software design, and allows design improvement of otherwise intractable code bases.
 
 ## Levels of Completion
 
-Some of these recipes are very complete; others are works in progress. The recipes can have bugs: situations in which they don't meet the bug-for-bug compatability guarantee. To help understand the risk associated with a given refactoring, all recipes are clearly marked as to their stage of development. New recipes always start at the beginning, advancing as evidence accumulates.
+Some of these recipes are very complete; others are works in progress. The recipes can have bugs: situations in which they don't meet the bug-for-bug compatibility guarantee. To help understand the risk associated with a given refactoring, all recipes are clearly marked as to their stage of development. New recipes always start at the beginning, advancing as evidence accumulates.
 
 1. **Need:** We have identified the need for a recipe, but have not yet created one. We are in the process of gathering a clear and agreed description of the transformation's intention.
 2. **Concepts:** We have identified one or more concepts. Each concept is a sequence of steps, each of which appears provable. We are in the process of verifying steps, finding constraints, and selecting between implementations that are valid.
