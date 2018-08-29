@@ -15,6 +15,7 @@ Each recipe is guaranteed to be bug-for-bug compatible. This means that the code
 This property allows these refactorings to be used in a wide variety of contexts in which other refactorings are insufficiently safe. That shifts the economics of software design, and allows design improvement of otherwise intractable code bases.
 
 ## Levels of Completion
+[Status](status.md)
 
 Some of these recipes are very complete; others are works in progress. The recipes can have bugs: situations in which they don't meet the bug-for-bug compatibility guarantee. To help understand the risk associated with a given refactoring, all recipes are clearly marked as to their stage of development. New recipes always start at the beginning, advancing as evidence accumulates.
 
