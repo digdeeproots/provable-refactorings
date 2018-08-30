@@ -14,6 +14,10 @@ Each recipe is guaranteed to be bug-for-bug compatible. This means that the code
 
 This property allows these refactorings to be used in a wide variety of contexts in which other refactorings are insufficiently safe. That shifts the economics of software design, and allows design improvement of otherwise intractible code bases.
 
+## A note on language versions
+
+Some recipes may depend on language features that are newer than the toolset you use to build your software. Upgrading to newer a versions of your toolset may difficult or even impossible in your context. In this case, use the newer toolset on only the code in question, only on your computer, only for the duration of the refactoring session. 
+
 ## Levels of Completion
 
 Some of these recipes are very complete; others are works in progress. The recipes can have bugs: situations in which they don't meet the bug-for-bug compatability guarantee. To help understand the risk associated with a given refactoring, all recipes are clearly marked as to their stage of development. New recipes always start at the beginning, advancing as evidence accumulates.
