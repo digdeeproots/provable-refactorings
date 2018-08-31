@@ -3,7 +3,8 @@
 # Split String
 
 
-You have a function you would like to add a return at the end of:
+You a string literal that you want to split into 2 string literals.
+
 
 ```cpp
 "This string has 2 parts"
