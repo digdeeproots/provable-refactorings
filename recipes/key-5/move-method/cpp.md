@@ -1,4 +1,7 @@
-{{< Conceptul >}}
+{{< Concepts >}}
+
+# Move Method
+
 {{< Unsafe reason="Depends on perfect method name resolution, which we don't often have. Easy to make a subtle mistake." >}}
 
 We might be able to eliminate the risk by executing the move in 4 steps:
