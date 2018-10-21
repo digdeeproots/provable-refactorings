@@ -1,66 +1,41 @@
 {{< Concepts >}}
 
+Most loops that compute a result, but don't have an external side effect, can be expressed as an algorithm.
+
 # replace loop with `any_of`
 
-## 0. refactor until you have a function that looks like this:
+## Before:
 
 ```cpp
-    for (const auto& item : collection)
+for (const auto& item : collection)
+{
+    if (predicate(item))
     {
-        if (/* some condition based on item */)
-        {
-            return true;
-        }
+        return true;
     }
-    return false;
+}
+return false;
 ```
 
-## 1. Apply [extract-immediately-executed-lambda](../extract-immediately-executed-lambda/cpp.md) to the condition of the `if`, converting `item` from capture to parameter:
+## After:
+
+```
+return boost::any_of(collection, predicate);
+```
+
+# replace loop with `transformed`
+
+## Before:
 
 ```cpp
-    for (const auto& item : collection)
-    {
-        if ([&](const auto& item){ return /* some condition based on item */; }(item))
-        {
-            return true;
-        }
-    }
-    return false;
+for (const auto& item : collection)
+{
+    result.push_back(bar(item));
+}
 ```
 
-## 2. [Introduce variable](...) on the lambda:
+## After:
 
-```cpp
-    for (const auto& item : collection)
-    {
-        const auto applesauce = [&](const auto& item){ return /* some condition based on item */; };
-        if (applesauce(item))
-        {
-            return true;
-        }
-    }
-    return false;
 ```
-
-## 3. [Move statement] up
-
-```cpp
-    const auto applesauce = [&](const auto& item){ return /* some condition based on item */; };
-
-    for (const auto& item : collection)
-    {
-        if (applesauce(item))
-        {
-            return true;
-        }
-    }
-    return false;
+boost::copy(collection | boost::adaptors::transformed(bar), std::back_inserter(result));
 ```
-
-## 4. Replace loop with `any_of`:
-
-    const auto applesauce = [&](const auto& item){ return /* some condition based on item */; };
-    return boost::any_of(collection, applesauce);
-
-
-
