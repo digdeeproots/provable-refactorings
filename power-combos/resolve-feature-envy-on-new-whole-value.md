@@ -39,17 +39,18 @@ Use the [Extract and Move recipe](http://devmockup/cbr/recipes/extract_and_move
 
 ### Breaking Apart a Chain Using Another Whole Value
 
-1.  `Extract Method` on the code that uses the intermediate values.
-2.  `Introduce Whole Value` on the method you just extracted. For purpose of this recipe, we’ll refer to this type as `struct Intermediate`.
-3.  `Introduce Variable` on the `Intermediate` variable.
-4.  `Extract Method` on all the statements that use the original Whole Value, including the variable declaration for the `Intermediate`.
-5.  Optionally `Inline` the method you extracted in step 1.
+1. `Extract Method` on the code that uses the intermediate values.
+2. `Introduce Whole Value` on the method you just extracted. For purpose of this recipe, we’ll refer to this type as `struct Intermediate`.
+3. `Introduce Variable` on the `Intermediate` variable.
+4. `Extract Method` on all the statements that use the original Whole Value, including the variable declaration for the `Intermediate`.
+5. Optionally `Inline` the method you extracted in step 1.
 
 ### Breaking Apart a Chain Using a Callback
 
-1.  `Extract Method` on the code that uses the intermediate values. This creates the method that will eventually become a callback.
-2.  `Extract Method` on the entire method body.
-3.  `Make Method Static` on the method you just extracted (which we will call `Inner` for this recipe). Now you are explicit about the data you are using from the original object.
-  * Make sure to pass and use fields, rather than passing only the entire object. You will still need to pass the entire object in order to call the callback, but that callback should be the only time the method uses the object.
-4.  `Move Method` on `Inner` to the Whole Value. The result is that the new method is on the Whole Value and makes a call back to the original object.
-5.  Clean up parameters and `Inline` any intermediate methods if desired.
+1. `Extract Method` on the code that uses the intermediate values. This creates the method that will eventually become a callback.
+2. `Extract Method` on the entire method body.
+3. `Make Method Static` on the method you just extracted (which we will call `Inner` for this recipe). Now you are explicit about the data you are using from the original object.
+   * Make sure to pass and use fields, rather than passing only the entire object. You will still need to pass the entire object in order to call the callback, but that callback should be the only time the method uses the object.
+
+4. `Move Method` on `Inner` to the Whole Value. The result is that the new method is on the Whole Value and makes a call back to the original object.
+5. Clean up parameters and `Inline` any intermediate methods if desired.

@@ -5,6 +5,7 @@
 {{< Unsafe reason="Depends on perfect method name resolution, which we don't often have. Easy to make a subtle mistake." >}}
 
 We might be able to eliminate the risk by executing the move in 4 steps:
+
 1. Move it from the current context to an empty context.
 2. Bring in everything that you need in order to resolve all the names. Copy from the source location.
 3. For each symbol you had to resolve, try to use it in the target context and make sure you get a compiler error (aka, the name is free to be bound in that context).

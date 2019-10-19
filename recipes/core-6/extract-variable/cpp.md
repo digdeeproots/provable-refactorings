@@ -17,8 +17,9 @@ Introducing a variable can change the order of operations. Here are some example
 If there are side effects in the expression you want to extract, extract a lambda instead (See [Extract Function (fix link)](#)).
 
 Otherwise:
+
 1. Select the expression you want to extract.
 2. CUT
 3. Type `applesauce`
-4. On the line above, type `auto applesauce = ` and PASTE and type `;`
-  * NOTE: If the extracted expression yields a reference, and the lifetime of the referenced object is managed by something else, then you should type auto& instead of auto.
+4. On the line above, type `auto applesauce =` and PASTE and type `;`
+   * NOTE: If the extracted expression yields a reference, and the lifetime of the referenced object is managed by something else, then you should type auto& instead of auto.

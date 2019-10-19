@@ -2,9 +2,7 @@
 
 # Split String
 
-
 You a string literal that you want to split into 2 string literals.
-
 
 ```cpp
 "This string has 2 parts"
@@ -20,12 +18,14 @@ Becomes:
 
 ## 1. Add std::string() to beginning if needed
 
-Copy/paste the following before the string
+Copy/paste the following before the string:
+
 ```cpp
 std::string() +
 ```
 
 The code should now look like:
+
 ```cpp
 std::string() + "This string has 2 parts"
 ```
@@ -35,13 +35,16 @@ You can test this by skipping this step.
 
 **Proof:** The code should **compile**
 
-Notes: the only other way the code will compile after pasting this is if you paste into a comment or between an existing string
+Notes: the only other way the code will compile after pasting this is if you paste into a comment or between an existing string:
+
 ```cpp
 "std::string() + sometext";
 ```
 
-## 2. Add Seperator
-Now copy/paste the following into the middle of the string where you want to split it
+## 2. Add Separator
+
+Now copy/paste the following into the middle of the string where you want to split it:
+
 ```cpp
 "+"
 ```

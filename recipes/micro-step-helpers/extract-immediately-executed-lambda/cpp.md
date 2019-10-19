@@ -7,7 +7,7 @@ This recipe only works on rvalue expressions or on whole blocks (surrounded by b
 # Recipe
 
 For a block/for/while/if, surround with:
- 
+
 ```cpp
 [&]() {
     // ...
@@ -32,7 +32,7 @@ Search the new lambda for any return statements (using find). If there are any r
 If it's obvious that all code paths return, then add a `return` before the lambda:
 
 ```cpp
-return [&]() { 
+return [&]() {
     //...
 }();
 ```

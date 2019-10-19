@@ -24,10 +24,10 @@ class Original
 {
 public:
     void StayingMethod();
- 
+
 private:
     void MovingMethod();
- 
+
     int m_movingField;
 };
 ```
@@ -56,19 +56,19 @@ In Original.h:
 class OneResponsibility
 {
     friend class Original;
- 
+
 public:
 private:
 };
- 
+
 class Original
 {
 public:
     void StayingMethod();
- 
+
 private:
     void MovingMethod();
- 
+
     OneResponsibility m_helper;
     int m_movingField;
 };
@@ -97,7 +97,7 @@ class OneResponsibility
 private:
     int m_movingField;
 };
- 
+
 // ... Original no longer contains m_movingField ...
 ```
 
@@ -135,11 +135,11 @@ class OneResponsibility
 {
 public:
     void MovingMethod();
- 
+
 private:
     int m_movingField;
 };
- 
+
 // ... Original no longer contains MovingMethod ...
 ```
 
@@ -159,7 +159,7 @@ void Original::StayingMethod()
 {
     m_helper.MovingMethod();
 }
- 
+
 void OneResponsibility::MovingMethod()
 {
     m_movingField = 42;

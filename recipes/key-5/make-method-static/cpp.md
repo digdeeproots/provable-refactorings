@@ -18,12 +18,12 @@ class Foo {
     void Bar() const;
     int m_width;
 };
- 
+
 void Foo::Bar() const
 {
     cout << m_width;
 }
- 
+
 foo.Bar();
 pFoo->Bar();
 ```
@@ -35,13 +35,13 @@ class Foo {
     void Bar(int width) const;
     int m_width;
 };
- 
- 
+
+
 void Foo::Bar(int width) const
 {
     cout << width;
 }
- 
+
 foo.Bar(m_width);
 pFoo->Bar(m_width);
 ```
@@ -50,7 +50,7 @@ pFoo->Bar(m_width);
 
 This is hard. VisualAssist sometimes gets it wrong.
 
-## 3. Remove const, add static, fix all callers, replacing member access operators . and -> with the scope resolution operator.
+## 3. Remove const, add static, fix all callers, replacing member access operators `.` and `->` with the scope resolution operator.
 
 Should this be multiple steps? How can we do this incrementally, in case there are lots of callers? Probably need to add a set-up step where we create a delegating thunk for a while, which we will clean up later.
 
@@ -59,12 +59,12 @@ class Foo {
     static void Bar(int width);
     int m_width;
 };
- 
+
 void Foo::Bar(int width)
 {
     cout << width;
 }
- 
+
 Foo::Bar(m_width);
 Foo::Bar(m_width);
 ```
@@ -77,13 +77,13 @@ Provided that the static function does not use any private features of the origi
 class Foo {
 };
 void Bar(int width);
- 
+
 void Bar(int width)
 {
     cout << width;
 }
- 
- 
+
+
 Bar(m_width);
 Bar(m_width);
 ```
