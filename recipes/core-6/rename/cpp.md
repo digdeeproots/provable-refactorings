@@ -8,7 +8,7 @@ Rename anything which can be named (function, variable, parameter, field, class,
 
 Rename relies on your ability to find all references to a name, and to change them.
 
-For example, a public API published to Tableau customers has names that you will be unable to change. Or convention-over-configuration, eval, dependency injection, and reflection can make it impossible to trace references to a name by transforming the binding between name and item to be dynamic instead of static.
+For example, a public API published to customers has names that you will be unable to change. Or convention-over-configuration, eval, dependency injection, and reflection can make it impossible to trace references to a name by transforming the binding between name and item to be dynamic instead of static.
 
 # Recipe
 
