@@ -8,7 +8,7 @@ This recipe is essentially a reverse of [Extract Function (fix link)](#).
 
 You can't inline if it's polymorphic.
 
-#Recipe
+# Recipe
 
 1. For member functions, move the definition in to the class declaration
 2. If overloaded, rename to eliminate the overload
@@ -24,8 +24,10 @@ You can't inline if it's polymorphic.
   c. Change the lambda return type to `void`
 7. If there is an early return, eliminate it (only return should be the last statement)
 8. Eliminate parameters
-  * Option 1: capture calling arguments by reference + move parameters to locals and initialize with those arguments, renaming if they are the same
-  * Option 2: move by-ref parameters/arguments to capture by ref, renaming if they are different
+
+   * Option 1: capture calling arguments by reference + move parameters to locals and initialize with those arguments, renaming if they are the same
+   * Option 2: move by-ref parameters/arguments to capture by ref, renaming if they are different
+  
 9. Delete the lambda declaration & the call and compile.
 
 For example:

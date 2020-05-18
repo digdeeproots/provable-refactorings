@@ -21,6 +21,7 @@ void Foo(){
 ```
 
 Notes: this pairs well with [move line into all if/else branches]()
+
 # Recipe
 
 ## 1. Add Return after the method
@@ -32,6 +33,7 @@ return;
 ```
 
 The code should now look like:
+
 ```cpp
 void Foo(){
   //some code
@@ -41,11 +43,12 @@ return;
 
 **Proof:** The code should **not** compile after this stage
 
-
 ## 2. Move the line up 1 line
+
 Move the line up one line (most editors have a keyboard shortcut for this).
 
 The code should now look like:
+
 ```cpp
 void Foo(){
   //some code

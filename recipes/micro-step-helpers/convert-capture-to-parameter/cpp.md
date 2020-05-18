@@ -9,7 +9,7 @@ A lambda which captures by reference:
 ```cpp
 std::string s = ...
 
-return [&]() { 
+return [&]() {
     std::cout << s;
 }();
 ```
@@ -19,7 +19,7 @@ Add the variable to the parameter list as `auto&` and pass it as an argument, us
 ```cpp
 std::string s = ...
 
-return [&](auto& s) { 
+return [&](auto& s) {
     std::cout << s;
 }(s);
 ```

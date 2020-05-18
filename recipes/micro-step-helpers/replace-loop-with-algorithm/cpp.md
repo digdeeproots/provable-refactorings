@@ -59,8 +59,7 @@
 
 ## 4. Replace loop with `any_of`:
 
+```cpp
     const auto applesauce = [&](const auto& item){ return /* some condition based on item */; };
     return boost::any_of(collection, applesauce);
-
-
-
+```

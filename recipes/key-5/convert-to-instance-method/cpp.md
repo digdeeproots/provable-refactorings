@@ -11,19 +11,19 @@ The method has a parameter that refers to the object that the method will become
 void F(const Cls& cls)
 {
 }
- 
- 
+
+
 // will eventually become:
 class Cls
 {
   void F() const; // <-- notice the const on the end
 }
- 
+
 // Non-const parameter
 void F(Cls& cls)
 {
 }
- 
+
 // will eventually become:
 class Cls
 {
@@ -36,6 +36,7 @@ class Cls
 ## 1. Convert Free Function to Static Method
 
 Apply the [Convert Free Function to Static Method (fix link)](#) refactoring to:
+
 * move the function to the compilation unit (.cpp file) containing the class implementation.
 * make the function a static method of the class.
 
@@ -74,8 +75,8 @@ public:
   static void F(const Cls& cls) { cls.F(cls); }
   void F(const Cls& cls) const; // <-- add const at the end
 }
- 
- 
+
+
 // Implementation file
 void Cls::F(const Cls& cls) const // <-- add const at the end
 {
@@ -115,5 +116,5 @@ void Cls::F(const Cls& cls)
 1. In the class's header file, remove the class parameter from the function's signature.
 2. Do the same in the function's implementation.
 3. Compile. For each error:
-  1. Remove the class parameter.
+   1. Remove the class parameter.
 4. Compile & Commit

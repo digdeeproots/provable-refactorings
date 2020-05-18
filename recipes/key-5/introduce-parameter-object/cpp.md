@@ -55,7 +55,7 @@ bool drawCircle(const Applesauce& a, const int x, const int y, const int radius)
 {
   // implementation
 }
- 
+
 // Wrapper method
 bool drawCircle(const int x, const int y, const int radius)
 {
@@ -110,7 +110,7 @@ class Applesauce {
 public:
   Applesauce(const int x)
   {}
- 
+
   int m_x; // <-- right here
 };
 ```
@@ -123,7 +123,7 @@ public:
   Applesauce(const int x)
     : m_x(x) // <-- right here
   {}
- 
+
   int m_x;
 };
 ```
@@ -221,5 +221,6 @@ F({b, c, d});
 ```
 
 Next steps:
+
 1. You'll probably want to follow up with removing the '&' on the fields, making copies of the parameters. Not guaranteed safe.
 2. Remove const from the fields. 
