@@ -251,26 +251,3 @@ auto Applesauce () -> void {
 };
 }
 ```
-
-### 9. Convert return value from lambda-like syntax to traditional syntax
- 1. Select the return value (after the `->`) and cut it.
-2. Delete the `->`
-3. Select the word `auto` and paste the return value over it.
-4. Remove the trailing semicolon.
-
- For example,
- ```cpp
-namespace {
-auto Applesauce () -> void {
-    ...
-};
-}
-```
- becomes:
- ```cpp
-namespace {
-void Applesauce () {
-    ...
-}
-}
-```
